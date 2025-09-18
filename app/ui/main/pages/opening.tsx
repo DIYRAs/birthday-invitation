@@ -4,7 +4,7 @@ import React from 'react'
 const Opening = () => {
     return (
         <section id='Opening'
-            className='w-full min-h-[100dvh] flex flex-col items-center justify-start md:py-20 py-10
+            className='w-full min-h-[100vh] flex flex-col items-center justify-start md:py-20 py-10
         bg-cover bg-center gap-y-8 bg-zinc-900 text-white text-center'>
             <h1 className='mt-12 text-3xl font-bold'>
                 Diymas Ramadhan

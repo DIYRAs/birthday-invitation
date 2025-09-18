@@ -105,7 +105,6 @@ const Gallery = () => {
     const handleVisibleSlide = (direction: 'left' | 'right') => {
         setVisible(prev => {
             if (direction === 'right') {
-                // ke kanan: tambah index
                 return {
                     ...prev,
                     startIndex: (prev.startIndex + 1) % allImages.length,
@@ -113,7 +112,6 @@ const Gallery = () => {
             }
 
             if (direction === 'left') {
-                // ke kiri: kurang index (jangan minus)
                 return {
                     ...prev,
                     startIndex:
@@ -121,14 +119,13 @@ const Gallery = () => {
                 };
             }
 
-            // default return state sebelumnya
             return prev;
         });
     };
 
 
     return (
-        <section className='w-full min-h-[100dvh] flex flex-col items-center justify-start md:py-16 py-10 px-10
+        <section className='w-full min-h-[100vh] flex flex-col items-center justify-start md:py-16 py-10 px-10
         bg-cover bg-center gap-y-10 bg-zinc-900 text-white text-center'>
             <h2 className='mt-10 text-2xl font-semibold'>
                 Galeri Foto

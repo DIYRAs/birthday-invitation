@@ -116,7 +116,22 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+.rainbow {
+  animation: rainbow 3s ease-in-out infinite both;
+}
+
+@keyframes rainbow {
+  from {
+    filter: hue-rotate(0);
+  }
+
+  to {
+    filter: hue-rotate(360deg);
   }
 }

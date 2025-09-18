@@ -30,7 +30,7 @@ const RSVP = () => {
 
     return (
         <section id='event'
-            className='w-full min-h-[100dvh] flex flex-col items-center justify-center md:py-16 py-10 px-10
+            className='w-full min-h-[100vh] flex flex-col items-center justify-center md:py-16 py-10 px-10
     bg-cover bg-center gap-y-10 bg-zinc-900 text-white text-center'>
             <div className='w-32 h-32 bg-yellow-300'></div>
 

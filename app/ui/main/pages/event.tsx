@@ -5,7 +5,7 @@ import React from 'react'
 const Event = () => {
     return (
         <section id='event'
-            className='w-full min-h-[100dvh] flex flex-col items-center justify-start md:py-16 py-10
+            className='w-full min-h-[100vh] flex flex-col items-center justify-start md:py-16 py-10
         bg-cover bg-center gap-y-10 bg-zinc-900 text-white text-center'>
             <h2 className='font-mono'>
                 Detail Acara
