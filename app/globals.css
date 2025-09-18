@@ -126,6 +126,16 @@
   animation: rainbow 3s ease-in-out infinite both;
 }
 
+.moon-rotate {
+  animation: moon-rotate 15s linear infinite both;
+  animation-delay: 3s;
+}
+
+.astronot-animation {
+  animation: astronot-animation 8s ease-in-out infinite both;
+  animation-delay: .3s;
+}
+
 @keyframes rainbow {
   from {
     filter: hue-rotate(0);
@@ -133,5 +143,27 @@
 
   to {
     filter: hue-rotate(360deg);
+  }
+}
+
+@keyframes moon-rotate {
+  from {
+    rotate: 0;
+  }
+
+  to {
+    rotate: 360deg;
+  }
+}
+
+@keyframes astronot-animation {
+
+  0%,
+  100% {
+    transform: translateY(30px);
+  }
+
+  50% {
+    transform: translateY(-5px);
   }
 }

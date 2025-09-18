@@ -5,7 +5,7 @@ import { GiftCard } from '@/components/ui/card';
 import { BanknoteArrowUp, GiftIcon } from 'lucide-react'
 import React, { useState } from 'react'
 
-const Gift = () => {
+const Gift = ({ className }: { className?: string }) => {
     const [isGift, setIsGift] = useState(false)
     const [giftOption, setGiftOption] = useState('')
 
@@ -20,8 +20,8 @@ const Gift = () => {
     }
 
     return (
-        <section className='w-full min-h-[100vh] flex flex-col items-center justify-center md:py-16 py-10 px-10
-    bg-cover bg-center gap-y-10 bg-zinc-900 text-white text-center'>
+        <section className={`w-full min-h-[100vh] flex flex-col items-center justify-center md:py-16 py-10 px-10
+    bg-cover bg-center gap-y-10 bg-zinc-900 text-white text-center ${className}`}>
             <h2 className='text-2xl font-semibold'>
                 TANDA KASIH
             </h2>

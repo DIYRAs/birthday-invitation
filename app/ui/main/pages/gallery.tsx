@@ -4,7 +4,7 @@ import { ArrowBigLeft, ArrowBigRight, ArrowLeftCircle, ArrowRightCircle, CircleX
 import Image from 'next/image'
 import React, { useState } from 'react'
 
-const Gallery = () => {
+const Gallery = ({ className }: { className?: string }) => {
     const [currentSlide, setCurrentSlide] = useState(1)
     const [visible, setVisible] = useState({
         status: false,
@@ -125,8 +125,8 @@ const Gallery = () => {
 
 
     return (
-        <section className='w-full min-h-[100vh] flex flex-col items-center justify-start md:py-16 py-10 px-10
-        bg-cover bg-center gap-y-10 bg-zinc-900 text-white text-center'>
+        <section className={`w-full min-h-[100vh] flex flex-col items-center justify-start md:py-16 py-10 px-10
+        bg-cover bg-center gap-y-10 bg-zinc-900 text-white text-center ${className}`}>
             <h2 className='mt-10 text-2xl font-semibold'>
                 Galeri Foto
             </h2>

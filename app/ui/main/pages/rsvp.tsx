@@ -24,15 +24,23 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from '@/components/ui/textarea'
+import Image from 'next/image';
 
-const RSVP = () => {
+const RSVP = ({ className }: { className?: string }) => {
     const [kehadiran, setKehadiran] = useState(false)
 
     return (
         <section id='event'
-            className='w-full min-h-[100vh] flex flex-col items-center justify-center md:py-16 py-10 px-10
-    bg-cover bg-center gap-y-10 bg-zinc-900 text-white text-center'>
-            <div className='w-32 h-32 bg-yellow-300'></div>
+            className={`w-full min-h-[100vh] flex flex-col items-center justify-center md:py-16 py-10 px-10
+    bg-cover bg-center gap-y-10 bg-zinc-900 text-white text-center ${className}`}>
+            <div className='w-40 h-40'>
+                <Image
+                    src={'images/astronot_roket.png'}
+                    alt='astronot naik roket'
+                    width={300}
+                    height={300}
+                    className='object-cover object-center w-full h-full astronot-animation' />
+            </div>
 
             <div className='space-y-6'>
                 <h2 className='text-3xl font-semibold'>
