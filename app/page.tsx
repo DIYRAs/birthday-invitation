@@ -8,6 +8,7 @@ import Gallery from './ui/main/pages/gallery'
 import Gift from './ui/main/pages/gift'
 import Thanks from './ui/main/pages/thanks'
 import AOS from 'aos'
+import Image from 'next/image';
 
 const Home = () => {
 
@@ -48,11 +49,10 @@ const Home = () => {
     )
   }
 
-  // setelah loading selesai render konten
   return (
     <div
       style={{ scrollbarWidth: 'none' }}
-      className='flex flex-col items-center justify-start *:w-full *:max-w-[400px] overflow-x-hidden'
+      className='flex flex-col items-center relative justify-start w-full max-w-[400px] *:w-full *:max-w-[400px] overflow-x-hidden'
     >
       <Cover isItOpen={handleIsOpen} />
       {isOpen && <>

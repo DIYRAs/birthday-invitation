@@ -26,7 +26,7 @@ export default function RootLayout({
   return (
     <html lang="en" style={{ scrollbarWidth: 'none' }}>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-zinc-900 flex items-center justify-center w-full`}
       >
         <AOSProvider>
           {children}

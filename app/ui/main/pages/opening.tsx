@@ -6,8 +6,9 @@ import React from 'react'
 const Opening = ({ className }: { className?: string }) => {
     return (
         <section id='Opening'
-            className={`w-full min-h-[100vh] flex flex-col items-center justify-start md:py-20 py-10
-        bg-cover bg-center gap-y-8 bg-zinc-900 text-white text-center ${className}`}>
+            style={{ backgroundImage: 'url(backgrounds/stars-galaxy.gif)' }}
+            className={`w-full min-h-[100vh] relative flex flex-col items-center bg-fixed justify-start md:py-20 py-10
+        bg-fill bg-center gap-y-8 bg-zinc-900 text-white text-center ${className}`}>
             <h1 data-aos='fade-down'
                 data-aos-delay='1900'
                 data-aos-offset='200'
@@ -29,12 +30,17 @@ const Opening = ({ className }: { className?: string }) => {
                 data-aos='fade-down'
                 data-aos-delay='1500'
                 data-aos-offset='200'
-                className='font-mono text-2xl'>
-                Selamat Ulang tahun yang <br />
-                <span className='font-serif text-3xl font-black'>
-                    ke- 2
-                </span>
+                className='text-2xl'>
+                Selamat Ulang Tahun <br />
+                Yang Ke-2
             </p>
+
+            {/* <Image
+                src={'images/astronot_iss.png'}
+                alt='foto astronot'
+                width={200}
+                height={300}
+                className='fixed bottom-0 left-0 sm:left-[20%] md:left-[30%] scale-[60%]' /> */}
         </section>
     )
 }

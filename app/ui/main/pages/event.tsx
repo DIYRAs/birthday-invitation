@@ -8,8 +8,9 @@ const Event = ({ className }: { className?: string }) => {
 
     return (
         <section id='event'
-            className={`w-full min-h-[100vh] flex flex-col items-center justify-start md:py-16 py-10
-        bg-cover bg-center gap-y-10 bg-zinc-900 text-white text-center ${className}`}>
+            style={{ backgroundImage: 'url(backgrounds/stars-galaxy.gif)' }}
+            className={`w-full min-h-[100vh] flex flex-col items-center bg-fixed justify-start md:py-16 py-10
+        bg-fill bg-center gap-y-10 bg-zinc-900 text-white text-center ${className}`}>
             <h2
                 data-aos={'fade-up'}
                 className='font-mono'>

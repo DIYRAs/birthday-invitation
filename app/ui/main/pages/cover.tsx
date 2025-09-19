@@ -35,7 +35,7 @@ const Cover = ({ isItOpen }: CoverProps) => {
             className='fixed z-[100] w-full min-h-[100dvh] transition duration-[5s] ease-in-out overflow-hidden flex flex-col items-center justify-between md:py-20 py-10
         bg-cover bg-center gap-y-5 text-white'>
             <div
-                className='mt-20 space-y-3 text-center'>
+                className='mt-20 space-y-3 text-center relative z-[1]'>
                 <p data-aos='fade-down' className='text-xl'>Happy Birthday</p>
                 <h1
                     data-aos='fade-down'
@@ -70,7 +70,7 @@ const Cover = ({ isItOpen }: CoverProps) => {
                     alt='foto astronot terbang'
                     height={300}
                     width={300}
-                    className='object-cover object-center astronot-animation scale-70' />
+                    className='z-0 object-cover object-center astronot-animation scale-70' />
             </div>
 
             <div
