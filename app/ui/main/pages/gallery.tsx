@@ -127,7 +127,8 @@ const Gallery = ({ className }: { className?: string }) => {
     return (
         <section className={`w-full min-h-[100vh] flex flex-col items-center justify-start md:py-16 py-10 px-10
         bg-cover bg-center gap-y-10 bg-zinc-900 text-white text-center ${className}`}>
-            <h2 className='mt-10 text-2xl font-semibold'>
+            <h2 data-aos='fade-up'
+                className='mt-10 text-2xl font-semibold'>
                 Galeri Foto
             </h2>
 
@@ -135,7 +136,9 @@ const Gallery = ({ className }: { className?: string }) => {
                 <div className='relative grid grid-cols-2 gap-3 place-items-center'>
                     {images[currentSlide].map((item, index) => (
                         <Image
-                            key={index}
+                            data-aos={index % 2 == 0 ? 'fade-up-right' : 'fade-up-left'}
+                            data-aos-delay={`${index * 200}`}
+                            key={`${currentSlide}-${index}`}
                             src={item.src}
                             alt={item.alt}
                             height={200}
@@ -169,8 +172,12 @@ const Gallery = ({ className }: { className?: string }) => {
                 </div>
 
                 <div className='flex z-50 relative items-center justify-center mt-5 gap-x-5 *:hover:scale-90 *:transition *:cursor-pointer *:active:scale-110'>
-                    <ArrowBigLeft onClick={() => { handleSwitchSlide('left') }} size={36} />
-                    <ArrowBigRight onClick={() => { handleSwitchSlide('right') }} size={36} />
+                    <div data-aos='fade-up-right'>
+                        <ArrowBigLeft onClick={() => { handleSwitchSlide('left') }} size={36} />
+                    </div>
+                    <div data-aos='fade-up-left'>
+                        <ArrowBigRight data-aos='fade-up-left' onClick={() => { handleSwitchSlide('right') }} size={36} />
+                    </div>
                 </div>
             </div>
         </section>

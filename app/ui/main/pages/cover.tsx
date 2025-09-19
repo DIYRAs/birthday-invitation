@@ -3,8 +3,13 @@
 import { Button } from '@/components/ui/button'
 import Image from 'next/image'
 import React, { useEffect, useRef, useState } from 'react'
+import AOS from 'aos';
 
-const Cover = () => {
+type CoverProps = {
+    isItOpen: (itIs: boolean) => void;
+};
+
+const Cover = ({ isItOpen }: CoverProps) => {
     const coverRef = useRef<HTMLElement>(null)
     const [isOpen, setIsOpen] = useState(false)
 
@@ -17,8 +22,10 @@ const Cover = () => {
     }, [isOpen])
 
     const handleOpenButton = () => {
+        AOS.refresh()
         coverRef.current?.classList.add('translate-y-[-150%]')
         setIsOpen(true)
+        isItOpen(true)
     }
 
     return (
@@ -27,14 +34,19 @@ const Cover = () => {
             style={{ backgroundImage: 'url(backgrounds/bg.jpg)' }}
             className='fixed z-[100] w-full min-h-[100dvh] transition duration-[5s] ease-in-out overflow-hidden flex flex-col items-center justify-between md:py-20 py-10
         bg-cover bg-center gap-y-5 text-white'>
-            <div className='mt-20 space-y-3 text-center'>
-                <p className='text-xl'>Happy Birthday</p>
-                <h1 className='text-4xl font-bold tracking-wider backdrop-blur-xs'>
+            <div
+                className='mt-20 space-y-3 text-center'>
+                <p data-aos='fade-down' className='text-xl'>Happy Birthday</p>
+                <h1
+                    data-aos='fade-down'
+                    data-aos-delay='50'
+                    className='text-4xl font-bold tracking-wider backdrop-blur-xs'>
                     Diymas <br /> Ramadhan
                 </h1>
             </div>
 
-            <div className='flex flex-col relative z-[1] items-center justify-center mb-10 gap-y-8'>
+            <div
+                className='flex flex-col relative z-[1] items-center justify-center mb-10 gap-y-8'>
                 <div style={{ boxShadow: '0 0 16px gray' }}
                     className='flex flex-col items-center justify-center px-10 py-4 text-center border rounded-lg border-white/50 backdrop-blur-md bg-white/10'>
                     <p>
@@ -51,7 +63,7 @@ const Cover = () => {
 
             <div
                 data-aos='fade-down'
-                data-aos-delay='300'
+                data-aos-delay='250'
                 className='absolute top-[-10%] right-[-23%] '>
                 <Image
                     src={'/images/astronot_fly.png'}
@@ -61,13 +73,16 @@ const Cover = () => {
                     className='object-cover object-center astronot-animation scale-70' />
             </div>
 
-            <Image
-                data-aos='fade-up'
-                src={'/images/bulan.png'}
-                alt='bulan'
-                height={600}
-                width={600}
-                className='bottom-[-250px] scale-110 w-[450px] h-[450px] moon-rotate z-0 object-contain object-center absolute' />
+            <div
+                data-aos={'fade-up'}
+                className='absolute bottom-[-250px]'>
+                <Image
+                    src={'/images/bulan.png'}
+                    alt='bulan'
+                    height={600}
+                    width={600}
+                    className='scale-110 w-[450px] h-[450px] moon-rotate z-0 object-contain object-center' />
+            </div>
 
         </section>
     )

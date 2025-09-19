@@ -127,8 +127,7 @@
 }
 
 .moon-rotate {
-  animation: moon-rotate 15s linear infinite both;
-  animation-delay: 3s;
+  animation: moon-rotate 18s linear infinite both;
 }
 
 .astronot-animation {

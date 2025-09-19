@@ -33,7 +33,9 @@ const RSVP = ({ className }: { className?: string }) => {
         <section id='event'
             className={`w-full min-h-[100vh] flex flex-col items-center justify-center md:py-16 py-10 px-10
     bg-cover bg-center gap-y-10 bg-zinc-900 text-white text-center ${className}`}>
-            <div className='w-40 h-40'>
+            <div
+                data-aos='fade-up-left'
+                className='w-40 h-40'>
                 <Image
                     src={'images/astronot_roket.png'}
                     alt='astronot naik roket'
@@ -43,14 +45,17 @@ const RSVP = ({ className }: { className?: string }) => {
             </div>
 
             <div className='space-y-6'>
-                <h2 className='text-3xl font-semibold'>
+                <h2 data-aos='fade-up'
+                    className='text-3xl font-semibold'>
                     Kirim ucapan dan konfirmasi kehadiran
                 </h2>
 
                 <Dialog>
                     <form>
                         <DialogTrigger asChild>
-                            <Button variant="outline"
+                            <Button data-aos='fade-up'
+                                data-aos-delay='200'
+                                variant="outline"
                                 className='text-black transition rounded-full cursor-pointer hover:-translate-y-1
                                 drop-shadow-[0px_0px_10px_gray] hover:animate-pulse'>
                                 Kirim ucapan RSVP

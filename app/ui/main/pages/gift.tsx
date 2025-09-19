@@ -22,22 +22,26 @@ const Gift = ({ className }: { className?: string }) => {
     return (
         <section className={`w-full min-h-[100vh] flex flex-col items-center justify-center md:py-16 py-10 px-10
     bg-cover bg-center gap-y-10 bg-zinc-900 text-white text-center ${className}`}>
-            <h2 className='text-2xl font-semibold'>
+            <h2 data-aos='fade-up'
+                className='text-2xl font-semibold'>
                 TANDA KASIH
             </h2>
 
-            <p className='text-[15px]'>
+            <p data-aos='fade-up'
+                className='text-[15px]'>
                 Kami mengucapkan terima kasih yang sebesar-besarnya atas kehadiran dan hadiah
                 indah yang telah menambah kebahagiaan di hari ulang tahun anak kami.
             </p>
 
             <div className='flex items-center justify-center gap-7 *:w-6/12 *:cursor-pointer *:drop-shadow-[0_0_4px_gray] *:hover:-translate-y-0.5 *:hover:animate-pulse'>
-                <Button onClick={() => { handleGiftVisible('cl') }}
+                <Button data-aos='fade-up-right'
+                    onClick={() => { handleGiftVisible('cl') }}
                     className='border-2 border-white'>
                     Transfer <BanknoteArrowUp size={36} />
                 </Button>
 
-                <Button onClick={() => { handleGiftVisible('c') }}
+                <Button data-aos='fade-up-left'
+                    onClick={() => { handleGiftVisible('c') }}
                     className='border-2 border-white'>
                     Kirim Kado <GiftIcon size={36} />
                 </Button>
@@ -45,7 +49,8 @@ const Gift = ({ className }: { className?: string }) => {
 
             {/* Gift Option */}
             {isGift &&
-                <div className='flex items-center justify-center w-full h-full'>
+                <div data-aos='fade-up'
+                    className='flex items-center justify-center w-full h-max'>
                     {giftOption === 'cl' ? (
                         // CASHLESS
                         <div className='flex flex-col items-start justify-center w-full h-full gap-5'>
