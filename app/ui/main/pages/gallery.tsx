@@ -126,9 +126,8 @@ const Gallery = ({ className }: { className?: string }) => {
 
     return (
         <section id='gallery'
-            style={{ backgroundImage: 'url(backgrounds/stars-galaxy.gif)' }}
-            className={`w-full min-h-[100vh] flex flex-col items-center bg-fixed justify-start md:py-16 py-10 px-10 overflow-x-hidden
-        bg-fill bg-center gap-y-10 bg-zinc-900 text-white text-center ${className}`}>
+            className={`w-full min-h-[100vh] flex flex-col items-center justify-start md:py-16 py-10 px-10 overflow-x-hidden
+        bg-center gap-y-10 text-white text-center ${className}`}>
             <h2 data-aos='fade-up'
                 className='mt-10 text-2xl font-semibold'>
                 Galeri Foto

@@ -1,14 +1,34 @@
 'use client';
 
 import Image from 'next/image'
-import React from 'react'
+import React, { useEffect } from 'react'
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
 
 const Opening = ({ className }: { className?: string }) => {
+    gsap.registerPlugin(ScrollTrigger)
+
+    useEffect(() => {
+        gsap.to('.openingItem', {
+            scrollTrigger: {
+                trigger: '#event',
+                end: 'bottom top',
+                scrub: 3,
+                // markers: true
+            },
+            translateY: () => {
+                const el = document.getElementById('event');
+                return el ? el.offsetHeight + 200 : 0;
+            },
+            ease: 'power1.inOut'
+        })
+    }, [])
+
     return (
-        <section id='Opening'
-            style={{ backgroundImage: 'url(backgrounds/stars-galaxy.gif)' }}
-            className={`w-full min-h-[100vh] relative flex flex-col items-center bg-fixed justify-start md:py-20 py-10
-        bg-fill bg-center gap-y-8 bg-zinc-900 text-white text-center ${className}`}>
+        <section id='opening'
+            className={`w-full min-h-[100vh] relative flex flex-col items-center justify-start md:py-20 py-10
+        bg-center gap-y-8 text-white text-center ${className}`}>
             <h1 data-aos='fade-down'
                 data-aos-delay='1900'
                 data-aos-offset='200'
@@ -35,12 +55,29 @@ const Opening = ({ className }: { className?: string }) => {
                 Yang Ke-2
             </p>
 
-            {/* <Image
-                src={'images/astronot_iss.png'}
-                alt='foto astronot'
-                width={200}
-                height={300}
-                className='fixed bottom-0 left-0 sm:left-[20%] md:left-[30%] scale-[60%]' /> */}
+            <div className='absolute openingItem bottom-0 left-[-10%] scale-[0.6]'>
+                <div data-aos='fade-up-right'
+                    data-aos-delay='1000'>
+                    <Image
+                        src={'images/astronot_iss.png'}
+                        alt='foto astronot'
+                        width={200}
+                        height={300}
+                        className='astronot-animation' />
+                </div>
+            </div>
+
+            <div className='absolute openingItem bottom-0 yanglain right-[-10%] scale-x-[-1]'>
+                <div data-aos='fade-up-right'
+                    data-aos-delay='1000'>
+                    <Image
+                        src={'images/astronot_iss.png'}
+                        alt='foto astronot'
+                        width={200}
+                        height={300}
+                        className='astronot-animation scale-[0.6]' />
+                </div>
+            </div>
         </section>
     )
 }

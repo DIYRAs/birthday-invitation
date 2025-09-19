@@ -81,6 +81,7 @@ const Cover = ({ isItOpen }: CoverProps) => {
                     alt='bulan'
                     height={600}
                     width={600}
+                    priority
                     className='scale-110 w-[450px] h-[450px] moon-rotate z-0 object-contain object-center' />
             </div>
 

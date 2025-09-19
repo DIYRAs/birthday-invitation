@@ -31,9 +31,8 @@ const RSVP = ({ className }: { className?: string }) => {
 
     return (
         <section id='event'
-            style={{ backgroundImage: 'url(backgrounds/stars-galaxy.gif)' }}
-            className={`w-full min-h-[100vh] flex flex-col items-center bg-fixed justify-center md:py-16 py-10 px-10
-    bg-fill bg-center gap-y-10 bg-zinc-900 text-white text-center ${className}`}>
+            className={`w-full min-h-[100vh] flex flex-col items-center justify-center md:py-16 py-10 px-10
+    bg-center gap-y-10 text-white text-center ${className}`}>
             <div
                 data-aos='fade-up-left'
                 className='w-40 h-40'>
