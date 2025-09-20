@@ -82,8 +82,8 @@ function CardFooter({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-function GiftCard({ src = '/images/ph.png', alt = 'Gambar Metode Transfer', rek, opt, an }:
-  { src?: string, alt?: string, rek: number | string, opt: string, an: string }) {
+function GiftCard({ src = '/images/ph.webp', alt = 'Gambar Metode Transfer', rek, opt, an, func }:
+  { src?: string, alt?: string, rek: number | string, opt: string, an: string, func: () => void }) {
   return (
     <div className='flex items-center justify-start gap-3'>
       <Image
@@ -101,7 +101,8 @@ function GiftCard({ src = '/images/ph.png', alt = 'Gambar Metode Transfer', rek,
           {opt}: Atas Nama {an}
         </p>
 
-        <button className='px-2 py-1 mt-2 text-sm font-semibold text-black transition bg-white border border-white rounded-md cursor-pointer hover:text-white hover:bg-transparent hover:border-white hover:border'>
+        <button onClick={() => { func() }}
+          className='px-2 py-1 mt-2 text-sm font-semibold text-black transition bg-white border border-white rounded-md cursor-pointer hover:text-white hover:bg-transparent hover:border-white hover:border'>
           Salin Rekening
         </button>
       </div>

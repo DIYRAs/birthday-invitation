@@ -52,7 +52,7 @@ const Home = () => {
   return (
     <div
       style={{ scrollbarWidth: 'none', backgroundImage: 'url(backgrounds/twinkle-star.gif)' }}
-      className='flex flex-col items-center relative bg-fixed justify-start w-full max-w-[400px] bg-center *:w-full *:max-w-[400px] overflow-x-hidden'
+      className='flex flex-col items-center relative bg-fixed justify-start w-full max-w-[400px] *:w-full *:max-w-[400px] overflow-x-hidden'
     >
       <Cover isItOpen={handleIsOpen} />
       {isOpen && <>

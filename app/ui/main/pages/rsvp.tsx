@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button } from '@/components/ui/button'
 import {
     Dialog,
@@ -25,42 +25,65 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from '@/components/ui/textarea'
 import Image from 'next/image';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 const RSVP = ({ className }: { className?: string }) => {
     const [kehadiran, setKehadiran] = useState(false)
 
+    useEffect(() => {
+        gsap.registerPlugin(ScrollTrigger)
+
+        gsap.to('.meteor-rsvp', {
+            scrollTrigger: {
+                trigger: '.trigger-meteor',
+                start: 'top bottom',
+                toggleActions: 'play none none none',
+                markers: true
+            },
+            opacity: 1,
+            y: 300,
+            x: -600,
+            duration: 6,
+            ease: 'power1.inOut'
+        })
+    }, [])
+
     return (
         <section id='event'
-            className={`w-full min-h-[100vh] flex flex-col items-center justify-center md:py-16 py-10 px-10
-    bg-center gap-y-10 text-white text-center ${className}`}>
+            className={`w-full relative min-h-[100vh] flex flex-col items-center justify-center md:py-16 py-10 px-10
+    bg-center bg-fixed z-0 gap-y-10 text-white text-center ${className}`}>
             <div
                 data-aos='fade-up-left'
-                className='w-40 h-40'>
+                className='w-40 h-40 relative z-[1] trigger-meteor'>
                 <Image
-                    src={'images/astronot_roket.png'}
+                    src={'images/astronot_roket.webp'}
                     alt='astronot naik roket'
                     width={300}
                     height={300}
                     className='object-cover object-center w-full h-full astronot-animation' />
             </div>
 
-            <div className='space-y-6'>
+            <div className='space-y-6  relative z-[1]'>
                 <h2 data-aos='fade-up'
                     className='text-3xl font-semibold'>
                     Kirim ucapan dan konfirmasi kehadiran
                 </h2>
 
+                {/* open rsvp */}
                 <Dialog>
                     <form>
-                        <DialogTrigger asChild>
-                            <Button data-aos='fade-up'
-                                data-aos-delay='200'
-                                variant="outline"
-                                className='text-black transition rounded-full cursor-pointer hover:-translate-y-1
+                        <div data-aos='fade-up'
+                            data-aos-delay='200'>
+                            <DialogTrigger asChild>
+                                <Button
+                                    variant="outline"
+                                    className='text-black transition rounded-full cursor-pointer hover:-translate-y-1
                                 drop-shadow-[0px_0px_10px_gray] hover:animate-pulse'>
-                                Kirim ucapan RSVP
-                            </Button>
-                        </DialogTrigger>
+                                    Kirim ucapan RSVP
+                                </Button>
+                            </DialogTrigger>
+                        </div>
                         <DialogContent style={{ scrollbarWidth: 'none' }}
                             className="sm:max-w-[425px] max-h-11/12 overflow-auto">
                             <DialogHeader>
@@ -115,11 +138,11 @@ const RSVP = ({ className }: { className?: string }) => {
 
                                 {/* ucapan dan doa */}
                                 <div className="grid w-full gap-3">
-                                    <Label htmlFor="message">Your message</Label>
-                                    <Textarea placeholder="Type your message here." id="message" />
+                                    <Label htmlFor="message">Doa dan Ucapan</Label>
+                                    <Textarea placeholder="Tulis Doa dan Ucapan kamu disini ya" id="message" />
                                 </div>
                             </div>
-                            <DialogFooter className='flex items-center !justify-center'>
+                            <DialogFooter className='flex items-center flex-row !justify-center gap-x-10'>
                                 <DialogClose asChild>
                                     <Button variant="outline">Tutup</Button>
                                 </DialogClose>
@@ -146,6 +169,14 @@ const RSVP = ({ className }: { className?: string }) => {
                     </form>
                 </Dialog>
             </div>
+
+            {/* Animasi addon */}
+            <Image
+                src={'images/meteor-biru.webp'}
+                alt='meteor warna biru'
+                width={200}
+                height={100}
+                className='absolute meteor-rsvp bottom-[60%] opacity-0 z-0 right-[-35%] rotate-[-8deg] object-cover object-center' />
         </section>
     )
 }

@@ -15,66 +15,66 @@ const Gallery = ({ className }: { className?: string }) => {
     const images = [
         [
             {
-                'src': '/images/ph.png',
+                'src': '/images/ph.webp',
                 'alt': 'foto galeri',
                 'id': 0
             },
             {
-                'src': '/images/ph.png',
+                'src': '/images/ph2.webp',
                 'alt': 'foto galeri',
                 'id': 1
             },
             {
-                'src': '/images/ph.png',
+                'src': '/images/ph3.webp',
                 'alt': 'foto galeri',
                 'id': 2
             },
             {
-                'src': '/images/ph.png',
+                'src': '/images/ph.webp',
                 'alt': 'foto galeri',
                 'id': 3
             },
         ],
         [
             {
-                'src': '/images/ph2.png',
+                'src': '/images/ph2.webp',
                 'alt': 'foto galeri',
                 'id': 4
             },
             {
-                'src': '/images/ph2.png',
+                'src': '/images/ph3.webp',
                 'alt': 'foto galeri',
                 'id': 5
             },
             {
-                'src': '/images/ph2.png',
+                'src': '/images/ph.webp',
                 'alt': 'foto galeri',
                 'id': 6
             },
             {
-                'src': '/images/ph2.png',
+                'src': '/images/ph2.webp',
                 'alt': 'foto galeri',
                 'id': 7
             },
         ],
         [
             {
-                'src': '/images/ph3.png',
+                'src': '/images/ph3.webp',
                 'alt': 'foto galeri',
                 'id': 8
             },
             {
-                'src': '/images/ph3.png',
+                'src': '/images/ph.webp',
                 'alt': 'foto galeri',
                 'id': 9
             },
             {
-                'src': '/images/ph3.png',
+                'src': '/images/ph2.webp',
                 'alt': 'foto galeri',
                 'id': 10
             },
             {
-                'src': '/images/ph3.png',
+                'src': '/images/ph3.webp',
                 'alt': 'foto galeri',
                 'id': 11
             },
@@ -127,7 +127,7 @@ const Gallery = ({ className }: { className?: string }) => {
     return (
         <section id='gallery'
             className={`w-full min-h-[100vh] flex flex-col items-center justify-start md:py-16 py-10 px-10 overflow-x-hidden
-        bg-center gap-y-10 text-white text-center ${className}`}>
+        bg-center bg-fixed gap-y-10 text-white text-center ${className}`}>
             <h2 data-aos='fade-up'
                 className='mt-10 text-2xl font-semibold'>
                 Galeri Foto
@@ -149,8 +149,8 @@ const Gallery = ({ className }: { className?: string }) => {
                     ))}
 
                     {status &&
-                        <div className='absolute z-[100] w-full h-[350px] -top-6 p-2 flex flex-col place-items-center'>
-                            <div className='relative w-11/12 h-[350px] flex items-center justify-center'>
+                        <div className='absolute z-[100] bg-amber-300 w-full h-[350px] -top-6 p-2 flex flex-col place-items-center'>
+                            <div className='relative w-full h-[350px] flex items-center justify-center'>
                                 <Image
                                     src={allImages[startIndex].src}
                                     alt='orang'
@@ -159,10 +159,10 @@ const Gallery = ({ className }: { className?: string }) => {
 
                                 <div className='relative z-10 flex items-center justify-between w-full'>
                                     <ArrowLeftCircle onClick={() => { handleVisibleSlide('left') }}
-                                        size={48} color='black' className='bg-white' />
+                                        size={48} color='black' className='bg-white rounded-full' />
 
                                     <ArrowRightCircle onClick={() => { handleVisibleSlide('right') }}
-                                        size={48} color='black' className='bg-white' />
+                                        size={48} color='black' className='bg-white rounded-full' />
                                 </div>
                             </div>
 

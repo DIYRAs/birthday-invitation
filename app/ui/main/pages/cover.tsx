@@ -31,7 +31,7 @@ const Cover = ({ isItOpen }: CoverProps) => {
     return (
         <section id='cover'
             ref={coverRef}
-            style={{ backgroundImage: 'url(backgrounds/bg.jpg)' }}
+            style={{ backgroundImage: 'url(backgrounds/bg.webp)' }}
             className='fixed z-[100] w-full min-h-[100dvh] transition duration-[5s] ease-in-out overflow-hidden flex flex-col items-center justify-between md:py-20 py-10
         bg-cover bg-center gap-y-5 text-white'>
             <div
@@ -40,7 +40,7 @@ const Cover = ({ isItOpen }: CoverProps) => {
                 <h1
                     data-aos='fade-down'
                     data-aos-delay='50'
-                    className='text-4xl font-bold tracking-wider backdrop-blur-xs'>
+                    className='text-4xl font-bold tracking-wider'>
                     Diymas <br /> Ramadhan
                 </h1>
             </div>
@@ -66,7 +66,7 @@ const Cover = ({ isItOpen }: CoverProps) => {
                 data-aos-delay='250'
                 className='absolute top-[-10%] right-[-23%] '>
                 <Image
-                    src={'/images/astronot_fly.png'}
+                    src={'/images/astronot_fly.webp'}
                     alt='foto astronot terbang'
                     height={300}
                     width={300}
@@ -77,7 +77,7 @@ const Cover = ({ isItOpen }: CoverProps) => {
                 data-aos={'fade-up'}
                 className='absolute bottom-[-250px]'>
                 <Image
-                    src={'/images/bulan.png'}
+                    src={'/images/bulan.webp'}
                     alt='bulan'
                     height={600}
                     width={600}
