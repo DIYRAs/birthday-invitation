@@ -39,7 +39,6 @@ const RSVP = ({ className }: { className?: string }) => {
                 trigger: '.trigger-meteor',
                 start: 'top bottom',
                 toggleActions: 'play none none none',
-                markers: true
             },
             opacity: 1,
             y: 300,
@@ -176,7 +175,17 @@ const RSVP = ({ className }: { className?: string }) => {
                 alt='meteor warna biru'
                 width={200}
                 height={100}
-                className='absolute meteor-rsvp bottom-[60%] opacity-0 z-0 right-[-35%] rotate-[-8deg] object-cover object-center' />
+                className='absolute meteor-rsvp bottom-[50%] opacity-0 z-0 right-[-35%] rotate-[-8deg] object-cover object-center' />
+
+            <div data-aos='fade-up-right'
+                className='absolute bottom-12 w-14 h-14 left-7'>
+                <Image
+                    src={'images/zamoon.png'}
+                    alt='gambar bulan'
+                    height={100}
+                    width={100}
+                    className='object-cover object-center w-full h-full astronot-animation' />
+            </div>
         </section>
     )
 }

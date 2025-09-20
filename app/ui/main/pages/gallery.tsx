@@ -126,7 +126,7 @@ const Gallery = ({ className }: { className?: string }) => {
 
     return (
         <section id='gallery'
-            className={`w-full min-h-[100vh] flex flex-col items-center justify-start md:py-16 py-10 px-10 overflow-x-hidden
+            className={`w-full relative min-h-[100vh] flex flex-col items-center overflow-y-hidden justify-start md:py-16 py-10 px-10 overflow-x-hidden
         bg-center bg-fixed gap-y-10 text-white text-center ${className}`}>
             <h2 data-aos='fade-up'
                 className='mt-10 text-2xl font-semibold'>
@@ -149,7 +149,7 @@ const Gallery = ({ className }: { className?: string }) => {
                     ))}
 
                     {status &&
-                        <div className='absolute z-[100] bg-amber-300 w-full h-[350px] -top-6 p-2 flex flex-col place-items-center'>
+                        <div className='absolute z-[100] w-full h-[350px] -top-6 p-2 flex flex-col place-items-center'>
                             <div className='relative w-full h-[350px] flex items-center justify-center'>
                                 <Image
                                     src={allImages[startIndex].src}
@@ -180,6 +180,17 @@ const Gallery = ({ className }: { className?: string }) => {
                         <ArrowBigRight data-aos='fade-up-left' onClick={() => { handleSwitchSlide('right') }} size={36} />
                     </div>
                 </div>
+            </div>
+
+            {/* Animation */}
+            <div data-aos='fade-up-left'
+                className='absolute top-0 w-24 h-24 right-3 md:right-7'>
+                <Image
+                    src={'images/earth.webp'}
+                    alt='gambar bumi'
+                    height={150}
+                    width={150}
+                    className='object-cover object-center w-full h-full astronot-animation' />
             </div>
         </section>
     )

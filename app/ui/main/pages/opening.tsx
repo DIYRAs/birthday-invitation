@@ -15,11 +15,10 @@ const Opening = ({ className }: { className?: string }) => {
                 trigger: '#event',
                 end: 'bottom top',
                 scrub: 5,
-                markers: true
             },
             translateY: () => {
                 const el = document.getElementById('event');
-                return el ? el.offsetHeight + 200 : 0;
+                return el ? el.offsetHeight + 100 : 0;
             }
         })
     }, [])
