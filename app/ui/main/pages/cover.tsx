@@ -22,6 +22,7 @@ const Cover = ({ isItOpen }: CoverProps) => {
     }, [isOpen])
 
     const handleOpenButton = () => {
+        document.documentElement.requestFullscreen()
         AOS.refresh()
         coverRef.current?.classList.add('translate-y-[-150%]')
         setIsOpen(true)
@@ -61,6 +62,7 @@ const Cover = ({ isItOpen }: CoverProps) => {
                 </Button>
             </div>
 
+            {/* Animation */}
             <div
                 data-aos='fade-down'
                 data-aos-delay='250'

@@ -8,12 +8,16 @@ import Gallery from './ui/main/pages/gallery'
 import Gift from './ui/main/pages/gift'
 import Thanks from './ui/main/pages/thanks'
 import AOS from 'aos'
-import Image from 'next/image';
+import { CirclePause, CirclePlay } from 'lucide-react';
 
 const Home = () => {
-
+  const [isPlay, setIsPlay] = useState(true)
   const [loading, setLoading] = useState(true)
   const [isOpen, setIsOpen] = useState(false)
+
+  const handlePlayButton = () => {
+    setIsPlay(prev => !prev)
+  }
 
   const handleIsOpen = (itIs: boolean) => {
     setIsOpen(itIs)
@@ -52,7 +56,7 @@ const Home = () => {
   return (
     <div
       style={{ scrollbarWidth: 'none', backgroundImage: 'url(backgrounds/twinkle-star.gif)' }}
-      className='flex flex-col items-center relative min-h-[100dvh] bg-fixed justify-start w-full max-w-[400px] *:w-full *:max-w-[400px] overflow-x-hidden'
+      className='flex flex-col items-center relative min-h-[100dvh] bg-fixed justify-center w-full max-w-[400px] *:w-full *:max-w-[400px] overflow-x-hidden'
     >
       <Cover isItOpen={handleIsOpen} />
       {isOpen && <>
@@ -62,7 +66,22 @@ const Home = () => {
         <Gallery />
         <Gift />
         <Thanks />
+
+        <div className='fixed bottom-5 z-[1999] text-blue-300 rainbow right-5 !w-max h-max *:select-none *:cursor-pointer'>
+          {isPlay ? (
+            <>
+              <CirclePause size={48} onClick={handlePlayButton}
+                className='rounded-full bg-black shadow-[0_0_40px_lightblue] moon-rotate' />
+
+              <audio src="audios/yo-te-canto.mp3" autoPlay></audio>
+            </>
+          ) : (
+            <CirclePlay size={48} onClick={handlePlayButton}
+              className='rounded-full bg-black shadow-[0_0_40px_lightblue]' />
+          )}
+        </div>
       </>}
+
     </div>
   )
 }

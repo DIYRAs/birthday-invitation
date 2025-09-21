@@ -7,6 +7,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { BanknoteArrowUp, GiftIcon } from 'lucide-react'
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react'
+import { toast } from 'sonner';
 
 const Gift = ({ className }: { className?: string }) => {
     const [isGift, setIsGift] = useState(false)
@@ -29,7 +30,7 @@ const Gift = ({ className }: { className?: string }) => {
 
     const handleCopy = (noRek: string) => {
         navigator.clipboard.writeText(noRek)
-            .then(() => alert('hore'))
+            .then(() => toast.success('Nomor rekening berhasil di Copy ✨'))
             .catch(err => console.error(err));
     }
 
@@ -59,7 +60,7 @@ const Gift = ({ className }: { className?: string }) => {
             y: 300,
             x: 600,
             duration: 4,
-            delay: 1,
+            delay: 0.7,
             ease: 'power1.inOut'
         })
 
@@ -73,7 +74,7 @@ const Gift = ({ className }: { className?: string }) => {
             y: 300,
             x: 600,
             duration: 4,
-            delay: 2,
+            delay: 1.4,
             ease: 'power1.inOut'
         })
     }, [])
@@ -149,7 +150,7 @@ const Gift = ({ className }: { className?: string }) => {
             <div data-aos='fade-up-right'
                 className='absolute top-[-3%] lg:top-[-4%] z-[1] rotate-[-20deg] lg:w-52 lg:h-52 left-0 w-44 h-44'>
                 <Image
-                    src={'images/saturn.png'}
+                    src={'images/saturn.webp'}
                     alt='gambar saturnus'
                     height={150}
                     width={150}
@@ -161,7 +162,7 @@ const Gift = ({ className }: { className?: string }) => {
                 alt='gambar komet ungu'
                 height={150}
                 width={150}
-                className={`komet1 top-32 opacity-0 absolute left-[-5%] scale-x-[-1] object-contain object-center w-16 h-16 z-[0]`}
+                className={`komet1 top-32 opacity-0 absolute left-[-13%] scale-x-[-1] object-contain object-center w-20 h-20 z-[0]`}
             />
 
             <Image
@@ -169,7 +170,7 @@ const Gift = ({ className }: { className?: string }) => {
                 alt='gambar komet ungu'
                 height={150}
                 width={150}
-                className={`komet2 top-64 opacity-0 absolute left-[-5%] scale-x-[-1] object-contain object-center w-16 h-16 z-[0]`}
+                className={`komet2 top-48 opacity-0 absolute left-[-13%] scale-x-[-1] object-contain object-center w-20 h-20 z-[0]`}
             />
 
             <Image
@@ -177,7 +178,7 @@ const Gift = ({ className }: { className?: string }) => {
                 alt='gambar komet ungu'
                 height={150}
                 width={150}
-                className={`komet3 top-96 opacity-0 absolute left-[-5%] scale-x-[-1] object-contain object-center w-16 h-16 z-[0]`}
+                className={`komet3 top-64 opacity-0 absolute left-[-13%] scale-x-[-1] object-contain object-center w-20 h-20 z-[0]`}
             />
         </section>
     )

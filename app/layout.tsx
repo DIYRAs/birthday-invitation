@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import AOSProvider from "@/components/ui/AOSProvider";
+import { Toaster } from "@/components/ui/sonner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,6 +31,9 @@ export default function RootLayout({
       >
         <AOSProvider>
           {children}
+          <Toaster
+            position="top-center"
+            duration={3000} />
         </AOSProvider>
       </body>
     </html>

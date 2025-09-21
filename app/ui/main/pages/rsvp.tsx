@@ -27,11 +27,94 @@ import { Textarea } from '@/components/ui/textarea'
 import Image from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { supabase } from '@/lib/supabaseClient';
+import { toast } from 'sonner';
+
+type RSVPItem = {
+    id: number
+    created_at: string
+    name: string
+    attendance: string
+    number: number
+    text: string
+}
 
 const RSVP = ({ className }: { className?: string }) => {
+    const [RSVPItem, setRSVPItem] = useState<RSVPItem[]>([])
     const [kehadiran, setKehadiran] = useState(false)
+    const [isLoading, setIsLoading] = useState(false)
+    const [RSVPData, setRSVPData] = useState({
+        name: '',
+        attendance: '',
+        number: 0,
+        text: ''
+    })
+    const { name, attendance, number, text } = RSVPData
+
+    const handleInput = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const { name, value } = e.target
+
+        setRSVPData((prev) => ({ ...prev, [name]: value }))
+    }
+    const handleSelectKehadiran = (value: string) => {
+        setKehadiran(value === 'hadir')
+        setRSVPData(prev => ({ ...prev, attendance: value }))
+    }
+    const handleSelectJumlah = (value: string) => {
+        setRSVPData(prev => ({ ...prev, number: Number(value) }))
+    }
+
+    const readRSVP = async () => {
+        const { data: RSVP, error } = await supabase
+            .from('RSVP')
+            .select('*')
+            .order('created_at', { ascending: false })
+
+        if (error) {
+            console.error(error);
+        } else {
+            setRSVPItem(RSVP)
+            console.log(RSVP)
+        }
+    }
+
+    const handleSubmit = async () => {
+        setIsLoading(true)
+        if (name === '' || attendance === '' || text === '') {
+            toast.error('Pastikan data untuk RSVPnya udah diisi semua ya 😊')
+            setIsLoading(false)
+            return
+        }
+        if (attendance === 'hadir' && number === 0) {
+            toast.error('Pastikan data untuk RSVPnya udah diisi semua ya 😊')
+            setIsLoading(false)
+            return
+        }
+
+        const { data, error } = await supabase
+            .from('RSVP')
+            .insert([
+                { name, attendance, number, text },
+            ])
+            .select()
+
+        if (error) {
+            console.error(error);
+        } else {
+            toast.success('🎉 RSVP kamu berhasil terkirim! Terima kasih sudah mengisi konfirmasi kehadiran.')
+            readRSVP()
+            setRSVPData({
+                name: '',
+                attendance: '',
+                number: 0,
+                text: ''
+            })
+        }
+        setIsLoading(false)
+    }
 
     useEffect(() => {
+        readRSVP()
         gsap.registerPlugin(ScrollTrigger)
 
         gsap.to('.meteor-rsvp', {
@@ -60,7 +143,7 @@ const RSVP = ({ className }: { className?: string }) => {
                     alt='astronot naik roket'
                     width={300}
                     height={300}
-                    className='object-cover object-center w-full h-full astronot-animation' />
+                    className='object-cover relative z-[2] object-center w-full h-full astronot-animation' />
             </div>
 
             <div className='space-y-6  relative z-[1]'>
@@ -95,13 +178,18 @@ const RSVP = ({ className }: { className?: string }) => {
                                 {/* nama */}
                                 <div className="grid gap-3">
                                     <Label htmlFor="nama">Nama</Label>
-                                    <Input id="nama" name="nama" placeholder='Nama kamu' />
+                                    <Input id="nama"
+                                        name="name"
+                                        value={RSVPData.name}
+                                        onChange={handleInput}
+                                        required
+                                        placeholder='Nama kamu' />
                                 </div>
 
                                 {/* konfirmasi kehadiran */}
                                 <div className="grid gap-3">
-                                    <Label htmlFor="kehadiran">Konfirmasi Kehadiran</Label>
-                                    <Select onValueChange={(value: string) => setKehadiran(value === 'hadir')}>
+                                    <Label htmlFor="kehadiran">Konfi rmasi Kehadiran</Label>
+                                    <Select onValueChange={handleSelectKehadiran} required>
                                         <SelectTrigger id='kehadiran' className="w-full">
                                             <SelectValue placeholder="Konfirmasi kehadiran kamu" />
                                         </SelectTrigger>
@@ -117,9 +205,9 @@ const RSVP = ({ className }: { className?: string }) => {
 
                                 {/* jumlah tamu */}
                                 {kehadiran && <div className="grid gap-3">
-                                    <Label htmlFor="kehadiran">Konfirmasi Jumlah Tamu</Label>
-                                    <Select>
-                                        <SelectTrigger id='kehadiran' className="w-full">
+                                    <Label htmlFor="jumlah">Konfirmasi Jumlah Tamu</Label>
+                                    <Select onValueChange={handleSelectJumlah} required>
+                                        <SelectTrigger id='jumlah' className="w-full">
                                             <SelectValue placeholder="Jumlah tamu yang berhadir" />
                                         </SelectTrigger>
                                         <SelectContent>
@@ -138,31 +226,54 @@ const RSVP = ({ className }: { className?: string }) => {
                                 {/* ucapan dan doa */}
                                 <div className="grid w-full gap-3">
                                     <Label htmlFor="message">Doa dan Ucapan</Label>
-                                    <Textarea placeholder="Tulis Doa dan Ucapan kamu disini ya" id="message" />
+                                    <Textarea id="message"
+                                        name='text'
+                                        value={RSVPData.text}
+                                        onChange={handleInput}
+                                        required
+                                        placeholder="Tulis Doa dan Ucapan kamu disini ya" />
                                 </div>
                             </div>
                             <DialogFooter className='flex items-center flex-row !justify-center gap-x-10'>
                                 <DialogClose asChild>
-                                    <Button variant="outline">Tutup</Button>
+                                    <Button className='cursor-pointer' variant="outline">Tutup</Button>
                                 </DialogClose>
-                                <Button type="submit">Kirim</Button>
+                                <Button
+                                    className='cursor-pointer'
+                                    disabled={isLoading}
+                                    onClick={handleSubmit}
+                                    type="submit">Kirim</Button>
                             </DialogFooter>
 
                             {/* Ucapan dan RSVP display */}
                             <div style={{ scrollbarWidth: 'thin' }}
-                                className='flex flex-col items-center justify-start gap-y-3 max-h-[250px] overflow-auto'>
-                                <div className='flex flex-col items-start justify-start pb-3 border-b border-b-black/50'>
-                                    <h3 className='text-[17px] font-semibold leading-1'>
-                                        DIYRA
-                                        <span className='px-2 ml-2 text-xs font-normal bg-blue-200 rounded-full'>
-                                            Hadir
-                                        </span>
-                                    </h3>
-                                    <h4 className='text-sm'>20 januari 2024 at 20.00</h4>
-                                    <p>
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                    </p>
-                                </div>
+                                className='flex flex-col items-center justify-start gap-y-4 mt-3 max-h-[300px] overflow-auto'>
+                                {RSVPItem.map((item, index) => (
+                                    <div key={index}
+                                        className='flex flex-col items-start justify-start w-full pb-3 border-b border-b-black/50'>
+                                        {/* nama */}
+                                        <h3 className='text-[18px] font-semibold leading-1'>
+                                            {item.name}
+                                            <span className={`${item.attendance === 'hadir' ? 'bg-blue-200' : 'bg-red-200'}
+                                            px-2 ml-2 text-xs pb-0.5 font-normal rounded-full`}>
+                                                {item.attendance === 'tidak_hadir' ? 'tidak hadir' : item.attendance}
+                                            </span>
+                                        </h3>
+
+                                        {/* tanggal */}
+                                        <h4 className='text-xs'>
+                                            {new Date(item.created_at).toLocaleString('id-ID', {
+                                                day: '2-digit', month: 'long', year: 'numeric',
+                                                hour: '2-digit', minute: '2-digit'
+                                            })}
+                                        </h4>
+
+                                        {/* doa dan ucapan */}
+                                        <p>
+                                            {item.text}
+                                        </p>
+                                    </div>
+                                ))}
                             </div>
                         </DialogContent>
                     </form>
@@ -175,12 +286,12 @@ const RSVP = ({ className }: { className?: string }) => {
                 alt='meteor warna biru'
                 width={200}
                 height={100}
-                className='absolute meteor-rsvp bottom-[50%] opacity-0 z-0 right-[-35%] rotate-[-8deg] object-cover object-center' />
+                className='absolute meteor-rsvp bottom-[60%] opacity-0 z-0 right-[-35%] rotate-[-8deg] object-cover object-center' />
 
             <div data-aos='fade-up-right'
                 className='absolute bottom-12 w-14 h-14 left-7'>
                 <Image
-                    src={'images/zamoon.png'}
+                    src={'images/zamoon.webp'}
                     alt='gambar bulan'
                     height={100}
                     width={100}

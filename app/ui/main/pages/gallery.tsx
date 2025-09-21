@@ -145,24 +145,24 @@ const Gallery = ({ className }: { className?: string }) => {
                             height={200}
                             width={200}
                             onClick={() => { handleVisible(item.id) }}
-                            className='object-cover object-center h-[120px] w-[170px] select-none' />
+                            className='object-cover rounded-xl object-center h-[120px] w-[170px] select-none' />
                     ))}
 
                     {status &&
-                        <div className='absolute z-[100] w-full h-[350px] -top-6 p-2 flex flex-col place-items-center'>
+                        <div className='absolute z-[100] w-full h-[350px] -top-6 flex flex-col place-items-center'>
                             <div className='relative w-full h-[350px] flex items-center justify-center'>
                                 <Image
                                     src={allImages[startIndex].src}
                                     alt='orang'
                                     fill
-                                    className='object-cover object-center w-full h-full border-8 select-none border-cyan-700' />
+                                    className='object-cover object-center w-full h-full border-8 select-none rainbow rounded-xl' />
 
-                                <div className='relative z-10 flex items-center justify-between w-full'>
+                                <div className='relative z-10 flex items-center justify-between w-full *:cursor-pointer *:select-none *:active:text-black *:transition'>
                                     <ArrowLeftCircle onClick={() => { handleVisibleSlide('left') }}
-                                        size={48} color='black' className='bg-white rounded-full' />
+                                        size={48} className='rounded-full bg-white/30 text-black/50' />
 
                                     <ArrowRightCircle onClick={() => { handleVisibleSlide('right') }}
-                                        size={48} color='black' className='bg-white rounded-full' />
+                                        size={48} className='rounded-full bg-white/30 text-black/50' />
                                 </div>
                             </div>
 
