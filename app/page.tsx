@@ -15,10 +15,6 @@ const Home = () => {
   const [loading, setLoading] = useState(true)
   const [isOpen, setIsOpen] = useState(false)
 
-  const handlePlayButton = () => {
-    setIsPlay(prev => !prev)
-  }
-
   const handleIsOpen = (itIs: boolean) => {
     setIsOpen(itIs)
   }
@@ -70,13 +66,13 @@ const Home = () => {
         <div className='fixed bottom-5 z-[1999] text-blue-300 rainbow right-5 !w-max h-max *:select-none *:cursor-pointer'>
           {isPlay ? (
             <>
-              <CirclePause size={48} onClick={handlePlayButton}
+              <CirclePause size={48} onClick={() => { setIsPlay(prev => !prev) }}
                 className='rounded-full bg-black shadow-[0_0_40px_lightblue] moon-rotate' />
 
               <audio src="audios/yo-te-canto.mp3" autoPlay></audio>
             </>
           ) : (
-            <CirclePlay size={48} onClick={handlePlayButton}
+            <CirclePlay size={48} onClick={() => { setIsPlay(prev => !prev) }}
               className='rounded-full bg-black shadow-[0_0_40px_lightblue]' />
           )}
         </div>
