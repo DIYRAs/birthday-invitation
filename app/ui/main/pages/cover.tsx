@@ -24,7 +24,7 @@ const Cover = ({ isItOpen }: CoverProps) => {
     const handleOpenButton = () => {
         document.documentElement.requestFullscreen()
         AOS.refresh()
-        coverRef.current?.classList.add('translate-y-[-20%]')
+        coverRef.current?.classList.add('translate-y-[-150%]')
         setIsOpen(true)
         isItOpen(true)
 
