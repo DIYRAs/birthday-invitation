@@ -24,16 +24,20 @@ const Cover = ({ isItOpen }: CoverProps) => {
     const handleOpenButton = () => {
         document.documentElement.requestFullscreen()
         AOS.refresh()
-        coverRef.current?.classList.add('translate-y-[-150%]')
+        coverRef.current?.classList.add('translate-y-[-20%]')
         setIsOpen(true)
         isItOpen(true)
+
+        setTimeout(() => {
+            coverRef.current?.classList.add('hidden')
+        }, 5000);
     }
 
     return (
         <section id='cover'
             ref={coverRef}
             style={{ backgroundImage: 'url(backgrounds/bg.webp)' }}
-            className='fixed z-[100] w-full min-h-[100dvh] transition duration-[5s] ease-in-out overflow-hidden flex flex-col items-center justify-between md:py-20 py-10
+            className='absolute top-0 left-0 z-[1199] w-full min-h-[100dvh] transition duration-[5s] ease-in-out overflow-hidden flex flex-col items-center justify-between md:py-20 py-10
         bg-cover bg-center gap-y-5 text-white'>
             <div
                 className='mt-20 space-y-3 text-center relative z-[1]'>
@@ -66,7 +70,7 @@ const Cover = ({ isItOpen }: CoverProps) => {
             <div
                 data-aos='fade-down'
                 data-aos-delay='250'
-                className='absolute top-[-10%] right-[-23%] '>
+                className='absolute top-[-17%] lg:top-[-10%] right-[-23%] '>
                 <Image
                     src={'/images/astronot_fly.webp'}
                     alt='foto astronot terbang'

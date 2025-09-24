@@ -31,7 +31,7 @@ const Opening = ({ className }: { className?: string }) => {
             <h1 data-aos='fade-down'
                 data-aos-delay='1900'
                 data-aos-offset='200'
-                className='mt-24 text-3xl font-bold'>
+                className='mt-16 text-3xl font-bold '>
                 Diymas Ramadhan
             </h1>
 

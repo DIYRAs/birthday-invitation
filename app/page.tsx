@@ -22,7 +22,7 @@ const Home = () => {
   useEffect(() => {
     if (isOpen) {
       setTimeout(() => {
-        AOS.refreshHard();
+        AOS.refresh();
       }, 100);
     }
   }, [isOpen]);
@@ -33,7 +33,9 @@ const Home = () => {
     }
 
     if (document.readyState === 'complete') {
-      handleLoad()
+      setTimeout(() => {
+        handleLoad()
+      }, 1000);
     } else {
       window.addEventListener('load', handleLoad)
     }
